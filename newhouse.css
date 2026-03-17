@@ -1,148 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap');
 
-
-h1 {
-	font-family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 3.5em;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 700;
-	line-height: 0.4em;
-}
-
-h2 {
-	font-family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 1.5em;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 500;
-	line-height: 1em;
-}
-
-h2.line {
-    font-weight: 300
-}
-
-p {
-	font-family: "Jost", 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 400;
-	line-height: 20px;
-}
-
-.linksvid{
-    text-align: center;
-}
-
-.date{
-    font-style: normal;
-    font-weight: 500;
-}
-
-.find {
-    text-align: center;
-    font-size: 2em;
-    font-weight: 500;
-    line-height: 0em;
-}
-
-.underline {
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: 400;
-    line-height: 1.2em;
-}
-
-.social {
-    text-align: center;
-    font-size: 1.4em;
-    font-weight: 400;
-    line-height: 1.2em;
-    text-transform: lowercase;
-}
-
-.icon { /* Customizes all icons at once */
-  display: inline-block;
-}
-
-blockquote {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 21px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 400;
-	line-height: 30px;
-}
-
-pre {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 13px;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 400;
-	line-height: 18px;
-}
-
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; 
-  left: 0;
-  width: 100%; 
-  height: 100%;  
-  opacity: .6; 
-  z-index: -1;
-  background-color: #efefef
-}
-
-
-a:link    {
-  text-decoration:none;
-  color:#9933CC;
-  } 
-a:visited {
-  text-decoration:none;
-  color:#9933CC;
-  } 
-a:hover   {
-  text-decoration:none;
-  color:#9a00e6;
-  } 
-a:active  {
-  text-decoration:none;
-  color:#9a00e6;
-  }
-
-header, footer, h2.line {
-    text-align: center;
-}
-
-footer {
-   position:fixed;
-   left:0em;
-   bottom:2em;
-   width:100%;
-}
-
-.embed-container {
-    position: relative; 
-    padding-bottom: 56.25%; 
-    height:0; 
-    overflow: hidden; 
-    max-width: 100%; 
-    margin-left: 3em;
-    margin-right: 3em;
-} 
-
-.embed-container iframe, .embed-container object, .embed-container embed { 
-    position: absolute; 
-    top:0; 
-    left:0; 
-    width:100%; 
-    height:100%; 
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -151,57 +12,46 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  animation: fadein 2s;
-  -moz-animation: fadein 2s;
-  -webkit-animation: fadein 2s;
-  -o-animation: fadein 2s;
+  background-color: #f5f5f5;
+  font-family: 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  animation: fadein 1.5s ease;
 }
 
+/* LOGO */
 .cabinet {
-  text-align: center;
-  margin-top: 0; /* plus de margin fixe */
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
-
 
 img {
-    width: 100%;
-    max-width: 26em;
+  width: auto;
+  height: auto;
+  max-width: 160px;
+  max-height: 160px;
 }
 
 
+
+/* FOOTER */
+footer {
+  position: fixed;
+  bottom: 2rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: #999;
+  letter-spacing: 0.1em;
+}
+
+/* LIENS */
+a:link, a:visited { text-decoration: none; color: inherit; }
+a:hover, a:active { color: #9933CC; }
+
+/* FADE IN */
 @keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-moz-keyframes fadein { /* Firefox */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity:1;
-    }
-}
-@-o-keyframes fadein { /* Opera */
-    from {
-        opacity:0;
-    }
-    to {
-        opacity: 1;
-    }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
