@@ -145,25 +145,34 @@ footer {
     height:100%; 
 }
 
-.cabinet {
-    text-align: center;
-    margin-top: 26em;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  animation: fadein 2s;
+  -moz-animation: fadein 2s;
+  -webkit-animation: fadein 2s;
+  -o-animation: fadein 2s;
 }
+
+.cabinet {
+  text-align: center;
+  margin-top: 0; /* plus de margin fixe */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 img {
     width: 100%;
     max-width: 26em;
 }
 
-body {
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
-}
+
 @keyframes fadein {
     from {
         opacity:0;
