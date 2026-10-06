@@ -91,8 +91,53 @@
     .frame .ttl {
       position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 0 1rem;
       font-weight: 300; font-size: clamp(1.4rem, 4.2vw, 3.6rem); letter-spacing: -.02em; line-height: 1;
-      transition: opacity .35s;
+      transition: opacity .35s; text-shadow: 0 2px 24px rgba(0,0,0,.6); z-index: 2;
     }
+    .frame .shots { position: absolute; inset: 0; overflow: hidden; }
+    .frame .shots img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      opacity: 0; transform: scale(1.04); transition: opacity .6s, transform 1.2s cubic-bezier(.2,.8,.2,1);
+    }
+    .frame .shots img.on { opacity: .42; transform: none; }
+    .frame .credit {
+      position: absolute; left: 0; bottom: -1.6rem; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+      white-space: nowrap;
+    }
+
+    /* ─── RÉALISATIONS ─── */
+    .works { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 1.4rem; }
+    .work { display: block; width: 100%; text-align: left; background: none; border: 0; color: inherit; font: inherit; cursor: pointer; }
+    .work .pic { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #111; }
+    .work .pic img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(.35) brightness(.82); transition: filter .4s, transform .6s cubic-bezier(.2,.8,.2,1); }
+    .work .pic::after {
+      content: "▶"; position: absolute; left: 50%; top: 50%; width: 3.2rem; height: 3.2rem; translate: -50% -50%; border: 1px solid rgba(240,239,235,.8); border-radius: 50%;
+      display: grid; place-items: center; font-size: .8rem; padding-left: .2rem; opacity: 0; transition: opacity .3s; background: rgba(5,5,5,.35);
+    }
+    .work:hover .pic img, .work:focus-visible .pic img { filter: none; transform: scale(1.03); }
+    .work:hover .pic::after, .work:focus-visible .pic::after { opacity: 1; }
+    .work:focus-visible { outline: 1px solid var(--txt); outline-offset: 6px; }
+    .work .t { display: block; margin-top: .9rem; font-size: 1.1rem; font-weight: 400; letter-spacing: -.01em; }
+    .work .m { display: block; margin-top: .25rem; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .sub { display: flex; align-items: baseline; gap: 1rem; margin: 3.6rem 0 1.4rem; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+    .sub b { font-weight: 400; font-size: 1.35rem; letter-spacing: -.01em; }
+    .sub span { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+    .works.toon { grid-template-columns: repeat(5, 1fr); gap: 1.6rem 1rem; }
+    .works.toon .t { font-size: .95rem; line-height: 1.3; }
+    .yt-note { margin-top: 2.2rem; font-size: .75rem; color: #555; letter-spacing: .02em; }
+
+    dialog.player { margin: auto; width: min(1100px, calc(100vw - 2rem)); background: transparent; border: 0; color: var(--txt); overflow: visible; }
+    dialog.player::backdrop { background: rgba(5,5,5,.94); }
+    .player .screen { position: relative; aspect-ratio: 16 / 9; background: #000; border: 1px solid #333; }
+    .player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .player .bar { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .player .bar b { font-weight: 400; font-size: 1.1rem; }
+    .player .bar span { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-left: .8rem; }
+    .player .eps { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .9rem; }
+    .player .eps button { font: inherit; font-size: .75rem; letter-spacing: .06em; color: #999; background: none; border: 1px solid #333; padding: .35rem .8rem; cursor: pointer; }
+    .player .eps button.on, .player .eps button:hover { color: var(--txt); border-color: var(--txt); }
+    .player .x { font: inherit; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); background: none; border: 0; cursor: pointer; }
+    .player .x:hover { color: var(--txt); }
+    .player .ext { font-size: .75rem; color: var(--muted); }
 
     .caps { position: absolute; left: 0; right: 0; top: calc(9vh + 54vh + 2.2rem); bottom: 2rem; padding: 0 clamp(1rem, 4vw, 2.5rem); }
     .cap {
@@ -170,6 +215,10 @@
     footer .manifesto { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #555; }
     footer .copy { font-size: .75rem; letter-spacing: .04em; color: #444; }
 
+    @media (max-width: 1000px) and (min-width: 761px) {
+      .works { grid-template-columns: 1fr 1fr; }
+      .works.toon { grid-template-columns: repeat(3, 1fr); }
+    }
     @media (max-width: 760px) {
       .frame-zone { top: 11vh; height: 46vh; }
       .caps { top: calc(11vh + 46vh + 2rem); }
@@ -177,6 +226,8 @@
       .hint { display: none; }
       .s-h, .list li { grid-template-columns: 1fr; gap: .6rem; }
       .cols { grid-template-columns: 1fr; }
+      .works { grid-template-columns: 1fr; }
+      .works.toon { grid-template-columns: 1fr 1fr; }
       .path { grid-template-columns: 1fr 1fr; gap: 1.4rem; }
       header nav a.opt { display: none; }
     }
@@ -194,6 +245,7 @@
 <header>
   <a class="name" href="#reel">cabinet26</a>
   <nav>
+    <a class="opt" href="#travaux">réalisations</a>
     <a class="opt" href="#confiance">références</a>
     <a class="opt" href="#projets">projets</a>
     <a href="#contact">contact</a>
@@ -209,7 +261,9 @@
           <span class="ratio" id="ratio">plein cadre</span>
           <span class="tc" id="tc">00:00:00:00</span>
           <span class="rec">rec</span>
+          <div class="shots" id="shots"></div>
           <div class="ttl" id="ttl">cabinet26</div>
+          <span class="credit" id="credit"></span>
         </div>
       </div>
 
@@ -218,6 +272,26 @@
       <span class="hint" id="hint">scroll ↓</span>
     </div>
   </section>
+
+  <section class="s" id="travaux">
+    <div class="s-h">
+      <h3>Réalisations</h3>
+      <p>Une sélection de vidéos que j'ai tournées, montées ou réalisées.</p>
+    </div>
+    <div class="works" id="works"></div>
+    <div class="sub"><b>toonesque.</b><span>Mon média sur l'animation · écrit, tourné, présenté et monté par moi</span></div>
+    <div class="works toon" id="toon"></div>
+    <p class="yt-note">Les vidéos sont lues via YouTube en mode « confidentialité renforcée », et seulement si vous cliquez dessus. Avant, rien n'est chargé depuis YouTube.</p>
+  </section>
+
+  <dialog class="player" id="player" aria-label="Lecteur vidéo">
+    <div class="screen" id="pScreen"></div>
+    <div class="bar">
+      <div><b id="pTitle"></b><span id="pMeta"></span></div>
+      <div><a class="ext" id="pExt" href="#" target="_blank" rel="noopener">Ouvrir sur YouTube ↗</a> &nbsp; <button class="x" id="pClose">Fermer ✕</button></div>
+    </div>
+    <div class="eps" id="pEps"></div>
+  </dialog>
 
   <section class="s" id="confiance">
     <div class="s-h">
@@ -313,19 +387,19 @@ const STEPS = [
   { r: null, label: 'plein cadre', ttl: 'cabinet26', k: 'Vincent Quêne · vidéaste indépendant',
     h: 'Un cadre, tous les formats.',
     p: 'Je suis vidéaste, monteur et motion designer. Du tournage à l\'export, <b>je m\'occupe de toute la chaîne, seul</b>, quel que soit le format.' },
-  { r: 2.39, label: '2,39:1', ttl: 'Réalisation', k: '01 — Cinémascope',
+  { r: 2.39, label: '2,39:1', ttl: 'Réalisation', k: '01 — Cinémascope', img: 'the-recipe', credit: '« The Recipe » — Caligosto & Don Skellington',
     h: 'Réaliser, cadrer, diriger.',
     p: 'Clips musicaux, bandes-annonces, interviews. J\'ai réalisé et post-produit des clips pour <b>Y40i</b> et pour <b>Caligosto &amp; Don Skellington</b>, et l\'interview d\'Étienne Guignard pour <b>Cartoon Fantasy</b>.' },
-  { r: 16 / 9, label: '16:9', ttl: 'Montage', k: '02 — Format écran',
+  { r: 16 / 9, label: '16:9', ttl: 'Montage', k: '02 — Format écran', img: 'internet-de-l-epoque', credit: '« Internet de l\'Époque » — montage & VFX',
     h: 'Monter, étalonner, mixer.',
     p: 'Mon cœur de métier, sur DaVinci Resolve Studio et Premiere Pro, avec un mixage propre. Pour les 25 ans de <b>Japan Expo Paris</b>, j\'ai monté 3 best-of à partir de 25 ans d\'archives et une boucle de 2h24 diffusée sur le stand.' },
-  { r: 9 / 16, label: '9:16', ttl: 'Réseaux', k: '03 — Vertical',
+  { r: 9 / 16, label: '9:16', ttl: 'Réseaux', k: '03 — Vertical', img: 'japan-expo-sud-jour-2', pos: '86% 50%', credit: 'Japan Expo Sud — Jour 2',
     h: 'Tourné le jour, publié le soir.',
     p: 'À <b>Japan Expo Sud</b> (Marseille), j\'ai tourné pour les réseaux et publié chaque soir. Shorts, sous-titrage, déclinaisons. Je produis et monétise aussi mes contenus sur YouTube, Instagram et TikTok.' },
-  { r: 1, label: '1:1', ttl: 'Motion', k: '04 — Carré',
+  { r: 1, label: '1:1', ttl: 'Motion', k: '04 — Carré', img: 'yeah-yeah', credit: '« yeah yeah » — Y40i',
     h: 'Faire bouger l\'image.',
     p: 'Motion design, titres, habillages, visuels. J\'ai fait des vidéos en motion design pour <b>O\'Saveurs Braisées</b> (Meudon-la-Forêt) et j\'habille mes propres émissions.' },
-  { r: 4 / 3, label: '4:3', ttl: 'Archives', k: '05 — Format d\'origine',
+  { r: 4 / 3, label: '4:3', ttl: 'Archives', k: '05 — Format d\'origine', img: 'arka-tech-psp', credit: 'arka-TECH — la PSP',
     h: 'Faire revivre ce qui dort.',
     p: 'Numérisation de cassettes miniDV en FireWire, capture de jeux vidéo, tri et montage d\'archives. Pour Japan Expo, j\'ai repris <b>25 ans d\'images</b>.' },
   { r: 16 / 9, label: '16:9 · direct', ttl: 'En direct', k: '06 — Live & face caméra', live: true,
@@ -333,7 +407,7 @@ const STEPS = [
     p: 'Lives, régie OBS et présentation face caméra. Le live de LUDOKINO pour la sortie de la Switch 2 a réuni <b>plus de 1 500 spectateurs simultanés</b> et s\'est retrouvé en page d\'accueil de Twitch.' },
   { r: null, label: 'plein cadre', ttl: 'Toute la chaîne', k: 'Fin de séquence',
     h: 'Un seul interlocuteur.',
-    p: 'Écriture, tournage, montage, étalonnage, mixage, motion, live, diffusion. <a href="#confiance">Voir les références ↓</a>' },
+    p: 'Écriture, tournage, montage, étalonnage, mixage, motion, live, diffusion. <a href="#travaux">Voir les réalisations ↓</a>' },
 ];
 
 const $ = id => document.getElementById(id);
@@ -341,6 +415,8 @@ const reel = $('reel'), frame = $('frame'), zone = document.querySelector('.fram
 const N = STEPS.length;
 reel.style.height = (N * 85 + 15) + 'vh';
 
+$('shots').innerHTML = STEPS.map((s, i) => s.img ? `<img data-i="${i}" src="img/${s.img}.webp" alt="" decoding="async"${s.pos ? ` style="object-position:${s.pos}"` : ''}>` : '').join('');
+const shots = [...document.querySelectorAll('#shots img')];
 $('caps').innerHTML = STEPS.map((s, i) => `<div class="cap" data-i="${i}"><p class="k">${s.k}</p><h2>${s.h}</h2><p>${s.p}</p></div>`).join('');
 $('index').innerHTML = STEPS.map((s, i) => `<li><a href="#" data-i="${i}">${s.label}</a></li>`).join('');
 const caps = [...document.querySelectorAll('.cap')], idx = [...document.querySelectorAll('.index a')];
@@ -382,6 +458,8 @@ function render() {
     $('ratio').textContent = st.label;
     $('ttl').textContent = st.ttl;
     frame.classList.toggle('live', !!st.live);
+    shots.forEach(im => im.classList.toggle('on', +im.dataset.i === a));
+    $('credit').textContent = st.credit || '';
   }
   $('tc').textContent = tc(prog * 128);
   $('hint').style.opacity = prog > .02 ? 0 : 1;
@@ -395,6 +473,43 @@ document.getElementById('index').addEventListener('click', e => {
   const p = k === 0 ? 0 : k === N - 1 ? 1 : (k + .25) / (N - 1);
   scrollTo({ top: reel.offsetTop + p * total, behavior: 'smooth' });
 });
+
+/* Réalisations : la vidéo YouTube n'est chargée qu'au clic (youtube-nocookie). */
+const WORKS = [
+  { img: 'japan-expo-sud-j-1', t: 'Japan Expo Sud 2026', m: 'SEFA Event · tournage & montage', eps: [
+    ['3GyMe6xj9gU', 'J-1'], ['GbVbN_Lsc2M', 'Jour 1'], ['HmaIM-DWOHw', 'Jour 2'], ['q0Na3Ldtmdk', 'Jour 3'], ['JsCOMHe0b8E', 'Sayonara Bye Bye']] },
+  { img: 'the-recipe', t: '« The Recipe »', m: 'Caligosto & Don Skellington · clip', eps: [['pw9u5-dUlKU']] },
+  { img: 'yeah-yeah', t: '« yeah yeah »', m: 'Y40i · clip', eps: [['fTHX7NXVaVY']] },
+  { img: 'blood-blood-blood', t: '« blood blood blood »', m: 'Y40i · clip', eps: [['mA5rBViqyx8']] },
+  { img: 'arka-tech-psp', t: 'arka-TECH — la PSP', m: 'LUDOKINO · écriture, présentation, montage', eps: [['EWIgJvGY6nE']] },
+  { img: 'internet-de-l-epoque', t: '« Internet de l\'Époque »', m: 'NOSIDE · montage & VFX', eps: [['G5OicZrhkHg']] },
+  { toon: 1, img: 'toonesque-sonic', t: 'Observons l\'effet de Sonic sur cet individu', m: 'toonesque.', eps: [['dG3NYwPIhZ4']] },
+  { toon: 1, img: 'toonesque-bluey', t: 'Pourquoi Bluey n\'est pas qu\'un cartoon pour enfants', m: 'toonesque.', eps: [['TYJdYJiw23A']] },
+  { toon: 1, img: 'toonesque-flcl', t: 'FLCL : pourquoi cet anime est un chef-d\'œuvre', m: 'toonesque.', eps: [['IEKdNtuIxe0']] },
+  { toon: 1, img: 'toonesque-parappa', t: 'PaRappa, le jeu qui a inventé les jeux de rythme', m: 'toonesque.', eps: [['ar6qSb8skdY']] },
+  { toon: 1, img: 'toonesque-over-the-garden-wall', t: 'Over the Garden Wall, le chef-d\'œuvre d\'Halloween', m: 'toonesque.', eps: [['xpJjlingy0k']] },
+];
+const tile = (w, i) => `<button class="work" data-w="${i}">
+  <span class="pic"><img src="img/${w.img}.webp" alt="" loading="lazy" decoding="async"></span>
+  <span class="t">${w.t}</span>${w.toon ? '' : `<span class="m">${w.m}${w.eps.length > 1 ? ` · ${w.eps.length} épisodes` : ''}</span>`}</button>`;
+$('works').innerHTML = WORKS.map((w, i) => w.toon ? '' : tile(w, i)).join('');
+$('toon').innerHTML = WORKS.map((w, i) => w.toon ? tile(w, i) : '').join('');
+
+const player = $('player');
+function play(w, e = 0) {
+  const W = WORKS[w], [id] = W.eps[e];
+  $('pScreen').innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="${W.t}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  $('pTitle').textContent = W.t;
+  $('pMeta').textContent = W.m;
+  $('pExt').href = `https://youtu.be/${id}`;
+  $('pEps').innerHTML = W.eps.length > 1 ? W.eps.map(([, l], k) => `<button data-e="${k}" class="${k === e ? 'on' : ''}">${l}</button>`).join('') : '';
+  $('pEps').onclick = ev => { const b = ev.target.closest('[data-e]'); if (b) play(w, +b.dataset.e); };
+  if (!player.open) player.showModal();
+}
+$('travaux').addEventListener('click', e => { const b = e.target.closest('.work'); if (b) play(+b.dataset.w); });
+$('pClose').addEventListener('click', () => player.close());
+player.addEventListener('click', e => { if (e.target === player) player.close(); });
+player.addEventListener('close', () => { $('pScreen').innerHTML = ''; });
 
 addEventListener('scroll', render, { passive: true });
 addEventListener('resize', render);
