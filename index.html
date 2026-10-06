@@ -3,23 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>cabinet26 — Vincent Quêne, vidéaste indépendant</title>
-  <meta name="description" content="cabinet26 — l'activité indépendante de Vincent Quêne, vidéaste, monteur et motion designer. Réalisation, montage, étalonnage, réseaux, motion, live, son. Un cadre, tous les formats." />
-  <meta name="robots" content="index,follow">
+  <title>Vincent Quêne — vidéaste freelance, monteur & motion designer | cabinet26</title>
+  <meta name="description" content="Vidéaste freelance en Île-de-France : réalisation, tournage, montage, étalonnage, motion design, réseaux et live. Un seul interlocuteur, du tournage à l'export." />
+  <meta name="author" content="Vincent Quêne">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#050505">
   <link rel="canonical" href="https://cabinet26.com/">
 
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="cabinet26">
   <meta property="og:title" content="cabinet26 — un cadre, tous les formats">
-  <meta property="og:description" content="Vincent Quêne, vidéaste, monteur et motion designer indépendant. Réalisation, montage, réseaux, motion, live, son.">
+  <meta property="og:description" content="Vincent Quêne, vidéaste, monteur et motion designer indépendant. Réalisation, montage, réseaux, motion, live.">
   <meta property="og:url" content="https://cabinet26.com/">
   <meta property="og:image" content="https://cabinet26.com/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="cabinet26 — Un cadre, tous les formats. Vincent Quêne, vidéaste, monteur, motion designer.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="cabinet26 — un cadre, tous les formats">
   <meta name="twitter:description" content="Vincent Quêne, vidéaste, monteur et motion designer indépendant.">
   <meta name="twitter:image" content="https://cabinet26.com/og.jpg">
 
-  <link rel="icon" type="image/png" href="c26_b_txt_background.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="favicon.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://cabinet26.com/#vincent",
+        "name": "Vincent Quêne",
+        "jobTitle": "Vidéaste, monteur et motion designer",
+        "url": "https://cabinet26.com/",
+        "email": "mailto:vincent@cabinet26.com",
+        "address": { "@type": "PostalAddress", "addressLocality": "Meudon", "postalCode": "92190", "addressRegion": "Île-de-France", "addressCountry": "FR" },
+        "alumniOf": { "@type": "EducationalOrganization", "name": "ESRA Paris" },
+        "worksFor": { "@id": "https://cabinet26.com/#cabinet26" },
+        "knowsLanguage": ["fr", "en"],
+        "sameAs": [
+          "https://vincentimes.fr/",
+          "https://www.linkedin.com/in/vincentimes",
+          "https://www.imdb.com/name/nm9590204/",
+          "https://instagram.com/vincentimes",
+          "https://youtube.com/@vincentimesfr"
+        ]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://cabinet26.com/#cabinet26",
+        "name": "cabinet26",
+        "description": "Vidéaste freelance en Île-de-France : réalisation, tournage, montage, étalonnage, motion design, réseaux et live. Un seul interlocuteur, du tournage à l'export.",
+        "url": "https://cabinet26.com/",
+        "logo": "https://cabinet26.com/icon-512.png",
+        "image": "https://cabinet26.com/og.jpg",
+        "email": "vincent@cabinet26.com",
+        "founder": { "@id": "https://cabinet26.com/#vincent" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Meudon", "postalCode": "92190", "addressRegion": "Île-de-France", "addressCountry": "FR" },
+        "areaServed": [{ "@type": "AdministrativeArea", "name": "Île-de-France" }, { "@type": "Country", "name": "France" }],
+        "knowsAbout": ["Réalisation vidéo", "Tournage", "Montage vidéo", "Étalonnage", "Motion design", "Contenus pour les réseaux sociaux", "Live streaming", "Interview vidéo", "Clip musical"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://cabinet26.com/#site",
+        "url": "https://cabinet26.com/",
+        "name": "cabinet26",
+        "inLanguage": "fr-FR",
+        "publisher": { "@id": "https://cabinet26.com/#cabinet26" }
+      }
+    ]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -40,6 +97,7 @@
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
     ::selection { background: var(--txt); color: var(--bg); }
 
     /* grain léger, comme avant */
@@ -253,6 +311,7 @@
 </header>
 
 <main>
+  <h1 class="sr-only">Vincent Quêne, vidéaste freelance, monteur et motion designer en Île-de-France — cabinet26</h1>
   <section id="reel" aria-label="Services">
     <div class="stage">
       <div class="frame-zone">
@@ -491,7 +550,7 @@ const WORKS = [
   { toon: 1, img: 'toonesque-over-the-garden-wall', t: 'Over the Garden Wall, le chef-d\'œuvre d\'Halloween', m: 'toonesque.', eps: [['xpJjlingy0k']] },
 ];
 const tile = (w, i) => `<button class="work" data-w="${i}">
-  <span class="pic"><img src="img/${w.img}.webp" alt="" loading="lazy" decoding="async"></span>
+  <span class="pic"><img src="img/${w.img}.webp" alt="${w.t.replace(/"/g, '&quot;')} — ${w.toon ? 'toonesque.' : w.m}" width="1280" height="720" loading="lazy" decoding="async"></span>
   <span class="t">${w.t}</span>${w.toon ? '' : `<span class="m">${w.y} · ${w.m}${w.eps.length > 1 ? ` · ${w.eps.length} épisodes` : ''}</span>`}</button>`;
 $('works').innerHTML = WORKS.map((w, i) => w.toon ? '' : tile(w, i)).join('');
 $('toon').innerHTML = WORKS.map((w, i) => w.toon ? tile(w, i) : '').join('');
