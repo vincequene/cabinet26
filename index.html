@@ -474,14 +474,15 @@ document.getElementById('index').addEventListener('click', e => {
   scrollTo({ top: reel.offsetTop + p * total, behavior: 'smooth' });
 });
 
-/* Réalisations : la vidéo YouTube n'est chargée qu'au clic (youtube-nocookie). */
+/* Réalisations (ordre chronologique) : la vidéo YouTube n'est chargée qu'au clic (youtube-nocookie). */
 const WORKS = [
-  { img: 'japan-expo-sud-j-1', t: 'Japan Expo Sud 2026', m: 'SEFA Event · tournage', eps: [
+  { y: 2023, img: 'yeah-yeah', t: '« yeah yeah »', m: 'Y40i · clip', eps: [['fTHX7NXVaVY']] },
+  { y: 2023, img: 'blood-blood-blood', t: '« blood blood blood »', m: 'Y40i · clip', eps: [['mA5rBViqyx8']] },
+  { y: 2025, img: 'the-recipe', t: '« The Recipe »', m: 'Caligosto & Don Skellington · clip', eps: [['pw9u5-dUlKU']] },
+  { y: 2026, img: 'arka-tech-psp', t: 'arka-TECH — la PSP', m: 'LUDOKINO · écriture, présentation, montage', eps: [['EWIgJvGY6nE']] },
+  { y: 2026, img: 'japan-expo-sud-j-1', t: 'Japan Expo Sud', m: 'SEFA Event · tournage', eps: [
     ['3GyMe6xj9gU', 'J-1'], ['GbVbN_Lsc2M', 'Jour 1'], ['HmaIM-DWOHw', 'Jour 2'], ['q0Na3Ldtmdk', 'Jour 3'], ['JsCOMHe0b8E', 'Sayonara Bye Bye']] },
-  { img: 'the-recipe', t: '« The Recipe »', m: 'Caligosto & Don Skellington · clip', eps: [['pw9u5-dUlKU']] },
-  { img: 'yeah-yeah', t: '« yeah yeah »', m: 'Y40i · clip', eps: [['fTHX7NXVaVY']] },
-  { img: 'blood-blood-blood', t: '« blood blood blood »', m: 'Y40i · clip', eps: [['mA5rBViqyx8']] },
-  { img: 'arka-tech-psp', t: 'arka-TECH — la PSP', m: 'LUDOKINO · écriture, présentation, montage', eps: [['EWIgJvGY6nE']] },
+  /* toonesque. : dans l'ordre choisi par Vincent */
   { toon: 1, img: 'toonesque-sonic', t: 'Observons l\'effet de Sonic sur cet individu', m: 'toonesque.', eps: [['dG3NYwPIhZ4']] },
   { toon: 1, img: 'toonesque-bluey', t: 'Pourquoi Bluey n\'est pas qu\'un cartoon pour enfants', m: 'toonesque.', eps: [['TYJdYJiw23A']] },
   { toon: 1, img: 'toonesque-flcl', t: 'FLCL : pourquoi cet anime est un chef-d\'œuvre', m: 'toonesque.', eps: [['IEKdNtuIxe0']] },
@@ -490,7 +491,7 @@ const WORKS = [
 ];
 const tile = (w, i) => `<button class="work" data-w="${i}">
   <span class="pic"><img src="img/${w.img}.webp" alt="" loading="lazy" decoding="async"></span>
-  <span class="t">${w.t}</span>${w.toon ? '' : `<span class="m">${w.m}${w.eps.length > 1 ? ` · ${w.eps.length} épisodes` : ''}</span>`}</button>`;
+  <span class="t">${w.t}</span>${w.toon ? '' : `<span class="m">${w.y} · ${w.m}${w.eps.length > 1 ? ` · ${w.eps.length} épisodes` : ''}</span>`}</button>`;
 $('works').innerHTML = WORKS.map((w, i) => w.toon ? '' : tile(w, i)).join('');
 $('toon').innerHTML = WORKS.map((w, i) => w.toon ? tile(w, i) : '').join('');
 
