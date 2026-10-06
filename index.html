@@ -93,10 +93,6 @@
       font-weight: 300; font-size: clamp(1.4rem, 4.2vw, 3.6rem); letter-spacing: -.02em; line-height: 1;
       transition: opacity .35s;
     }
-    .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .3s; }
-    .frame.wave svg { opacity: 1; }
-    .frame.wave .ttl { opacity: 0; }
-    .frame svg path { fill: none; stroke: var(--txt); stroke-width: 1; vector-effect: non-scaling-stroke; }
 
     .caps { position: absolute; left: 0; right: 0; top: calc(9vh + 54vh + 2.2rem); bottom: 2rem; padding: 0 clamp(1rem, 4vw, 2.5rem); }
     .cap {
@@ -214,7 +210,6 @@
           <span class="tc" id="tc">00:00:00:00</span>
           <span class="rec">rec</span>
           <div class="ttl" id="ttl">cabinet26</div>
-          <svg viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path id="wave" d=""/></svg>
         </div>
       </div>
 
@@ -322,8 +317,8 @@ const STEPS = [
     h: 'Réaliser, cadrer, diriger.',
     p: 'Clips musicaux, bandes-annonces, interviews. J\'ai réalisé et post-produit des clips pour <b>Y40i</b> et pour <b>Caligosto &amp; Don Skellington</b>, et l\'interview d\'Étienne Guignard pour <b>Cartoon Fantasy</b>.' },
   { r: 16 / 9, label: '16:9', ttl: 'Montage', k: '02 — Format écran',
-    h: 'Monter, étalonner, livrer.',
-    p: 'Mon cœur de métier, sur DaVinci Resolve Studio et Premiere Pro. Pour les 25 ans de <b>Japan Expo Paris</b>, j\'ai monté 3 best-of à partir de 25 ans d\'archives et une boucle de 2h24 diffusée sur le stand.' },
+    h: 'Monter, étalonner, mixer.',
+    p: 'Mon cœur de métier, sur DaVinci Resolve Studio et Premiere Pro, avec un mixage propre. Pour les 25 ans de <b>Japan Expo Paris</b>, j\'ai monté 3 best-of à partir de 25 ans d\'archives et une boucle de 2h24 diffusée sur le stand.' },
   { r: 9 / 16, label: '9:16', ttl: 'Réseaux', k: '03 — Vertical',
     h: 'Tourné le jour, publié le soir.',
     p: 'À <b>Japan Expo Sud</b> (Marseille), j\'ai tourné pour les réseaux et publié chaque soir. Shorts, sous-titrage, déclinaisons. Je produis et monétise aussi mes contenus sur YouTube, Instagram et TikTok.' },
@@ -336,12 +331,9 @@ const STEPS = [
   { r: 16 / 9, label: '16:9 · direct', ttl: 'En direct', k: '06 — Live & face caméra', live: true,
     h: 'Pas de deuxième prise.',
     p: 'Lives, régie OBS et présentation face caméra. Le live de LUDOKINO pour la sortie de la Switch 2 a réuni <b>plus de 1 500 spectateurs simultanés</b> et s\'est retrouvé en page d\'accueil de Twitch.' },
-  { r: 24, label: 'piste audio', ttl: 'Son', k: '07 — Son & musique', wave: true,
-    h: 'L\'autre moitié de l\'image.',
-    p: 'Nettoyage des voix, mixage, jingles et musique originale pour vos vidéos. Je livre des masters prêts pour la diffusion, avec <b>un son à la hauteur de l\'image</b>.' },
   { r: null, label: 'plein cadre', ttl: 'Toute la chaîne', k: 'Fin de séquence',
     h: 'Un seul interlocuteur.',
-    p: 'Écriture, tournage, montage, étalonnage, motion, son, live, diffusion. <a href="#confiance">Voir les références ↓</a>' },
+    p: 'Écriture, tournage, montage, étalonnage, mixage, motion, live, diffusion. <a href="#confiance">Voir les références ↓</a>' },
 ];
 
 const $ = id => document.getElementById(id);
@@ -365,7 +357,6 @@ function geom() {
 function sizeFor(r, g) {
   r = r ?? g.full;
   let w = Math.min(g.W, g.H * r), h = w / r;
-  if (r > 10) h = Math.max(h, 34); // la piste audio garde une hauteur lisible
   return [w, h];
 }
 function render() {
@@ -391,27 +382,11 @@ function render() {
     $('ratio').textContent = st.label;
     $('ttl').textContent = st.ttl;
     frame.classList.toggle('live', !!st.live);
-    frame.classList.toggle('wave', !!st.wave);
   }
   $('tc').textContent = tc(prog * 128);
   $('hint').style.opacity = prog > .02 ? 0 : 1;
 }
 
-// onde sonore pour la piste audio
-let ph = 0;
-const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-function wave() {
-  if (frame.classList.contains('wave') || !ph) {
-    ph += .06; let d = 'M0 50';
-    for (let x = 0; x <= 1000; x += 6) {
-      const env = Math.sin(x / 1000 * Math.PI);
-      const y = 50 + env * 42 * (Math.sin(x * .045 + ph) * .55 + Math.sin(x * .13 - ph * 1.7) * .3 + Math.sin(x * .011 + ph * .5) * .15);
-      d += ` L${x} ${y.toFixed(1)}`;
-    }
-    $('wave').setAttribute('d', d);
-  }
-  if (!still) requestAnimationFrame(wave);
-}
 
 document.getElementById('index').addEventListener('click', e => {
   const a = e.target.closest('a'); if (!a) return; e.preventDefault();
@@ -424,7 +399,6 @@ document.getElementById('index').addEventListener('click', e => {
 addEventListener('scroll', render, { passive: true });
 addEventListener('resize', render);
 render();
-wave();
 </script>
 </body>
 </html>
