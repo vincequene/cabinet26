@@ -3,222 +3,431 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>cabinet26 — transmission pop-culturelle</title>
-<meta name="description" content="cabinet26 — transmission pop-culturelle. Ludokino, toonesque., Caligosto & Don Skellington." />
+  <title>cabinet26 — Vincent Quêne, vidéaste indépendant</title>
+  <meta name="description" content="cabinet26 — l'activité indépendante de Vincent Quêne, vidéaste, monteur et motion designer. Réalisation, montage, étalonnage, réseaux, motion, live, son. Un cadre, tous les formats." />
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://cabinet26.com/">
 
-<meta name="robots" content="index,follow">
-<link rel="canonical" href="https://cabinet26.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="cabinet26">
+  <meta property="og:title" content="cabinet26 — un cadre, tous les formats">
+  <meta property="og:description" content="Vincent Quêne, vidéaste, monteur et motion designer indépendant. Réalisation, montage, réseaux, motion, live, son.">
+  <meta property="og:url" content="https://cabinet26.com/">
+  <meta property="og:image" content="https://cabinet26.com/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="cabinet26 — un cadre, tous les formats">
+  <meta name="twitter:description" content="Vincent Quêne, vidéaste, monteur et motion designer indépendant.">
+  <meta name="twitter:image" content="https://cabinet26.com/og.jpg">
 
-<!-- Open Graph (Facebook, LinkedIn, etc.) -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="cabinet26">
-<meta property="og:title" content="cabinet26 — transmission pop-culturelle">
-<meta property="og:description" content="cabinet26 — transmission pop-culturelle. Ludokino, toonesque., Caligosto & Don Skellington.">
-<meta property="og:url" content="https://cabinet26.com/">
-<meta property="og:image" content="https://cabinet26.com/og.jpg">
-
-<!-- Twitter / X Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="cabinet26 — transmission pop-culturelle">
-<meta name="twitter:description" content="cabinet26 — transmission pop-culturelle. Ludokino, toonesque., Caligosto & Don Skellington.">
-<meta name="twitter:image" content="https://cabinet26.com/og.jpg">
-  <link rel="icon" type="image/jpeg" href="c26_b_txt_background.png" />
+  <link rel="icon" type="image/png" href="c26_b_txt_background.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --bg: #050505;
+      --txt: #f0efeb;
+      --muted: #777;
+      --dim: #3a3a3a;
+      --line: #222;
+      --rec: #ff3b30;
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html, body {
-      height: 100%;
-      background: #050505;
-      color: #f0efeb;
-      font-family: 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      font-weight: 300;
-    }
-
-    /* bruit numérique léger */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.12; /* ajuste entre 0.05 et 0.25 */
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.08) 0,
-      rgba(255,255,255,0.08) 1px,
-      transparent 1px,
-      transparent 3px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.03) 0,
-      rgba(255,255,255,0.03) 1px,
-      transparent 1px,
-      transparent 4px
-    );
-  mix-blend-mode: screen;
-  animation: noiseShift 2.5s steps(4) infinite;
-}
-
-@keyframes noiseShift {
-  0%   { transform: translate3d(0,   0, 0); }
-  25%  { transform: translate3d(-3px, -4px, 0); }
-  50%  { transform: translate3d(2px,  3px, 0); }
-  75%  { transform: translate3d(-2px, 2px, 0); }
-  100% { transform: translate3d(0,   0, 0); }
-}
+    html { scroll-behavior: smooth; }
     body {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 100vh;
-      padding: 2.5rem;
-      z-index: 1; 
-      position: relative;
+      background: var(--bg); color: var(--txt);
+      font-family: 'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 300;
+      -webkit-font-smoothing: antialiased;
     }
+    a { color: inherit; }
+    ::selection { background: var(--txt); color: var(--bg); }
+
+    /* grain léger, comme avant */
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 100; opacity: .1;
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.08) 0, rgba(255,255,255,.08) 1px, transparent 1px, transparent 3px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.03) 0, rgba(255,255,255,.03) 1px, transparent 1px, transparent 4px);
+      mix-blend-mode: screen; animation: grain 2.5s steps(4) infinite;
+    }
+    @keyframes grain { 25% { transform: translate(-3px,-4px); } 50% { transform: translate(2px,3px); } 75% { transform: translate(-2px,2px); } }
 
     /* ─── HEADER ─── */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.6rem clamp(1rem, 3vw, 2.5rem);
+      mix-blend-mode: difference;
     }
+    header .name { font-weight: 500; font-size: .85rem; letter-spacing: .04em; text-decoration: none; }
+    header nav { display: flex; gap: 1.6rem; }
+    header nav a { font-size: .78rem; letter-spacing: .06em; color: #888; text-decoration: none; transition: color .2s; }
+    header nav a:hover { color: var(--txt); }
 
-    header span {
-      font-weight: 500;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
+    /* ─── REEL ─── */
+    #reel { position: relative; }
+    .stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+    .frame-zone { position: absolute; left: 0; right: 0; top: 9vh; height: 54vh; display: grid; place-items: center; }
+    .frame {
+      position: relative; border: 1px solid rgba(240,239,235,.85);
+      will-change: width, height;
     }
-
-    header a {
-      font-weight: 300;
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      color: #666;
-      text-decoration: none;
-      transition: color 0.2s;
+    /* repères de coupe */
+    .frame i { position: absolute; width: 14px; height: 14px; border-color: var(--txt); border-style: solid; opacity: .9; }
+    .frame i:nth-of-type(1) { left: -9px; top: -9px; border-width: 1px 0 0 1px; }
+    .frame i:nth-of-type(2) { right: -9px; top: -9px; border-width: 1px 1px 0 0; }
+    .frame i:nth-of-type(3) { left: -9px; bottom: -9px; border-width: 0 0 1px 1px; }
+    .frame i:nth-of-type(4) { right: -9px; bottom: -9px; border-width: 0 1px 1px 0; }
+    .frame .ratio, .frame .tc, .frame .rec {
+      position: absolute; font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); white-space: nowrap;
     }
-
-    header a:hover { color: #f0efeb; }
-
-    /* ─── MAIN ─── */
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
+    .frame .ratio { left: 0; top: -1.7rem; }
+    .frame .tc { right: 0; top: -1.7rem; font-variant-numeric: tabular-nums; }
+    .frame .rec { right: .7rem; top: .6rem; color: var(--rec); opacity: 0; transition: opacity .3s; display: flex; align-items: center; gap: .4rem; }
+    .frame .rec::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--rec); animation: blink 1s steps(2) infinite; }
+    .frame.live .rec { opacity: 1; }
+    .frame.live { border-color: var(--rec); }
+    @keyframes blink { 50% { opacity: 0; } }
+    .frame .ttl {
+      position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 0 1rem;
+      font-weight: 300; font-size: clamp(1.4rem, 4.2vw, 3.6rem); letter-spacing: -.02em; line-height: 1;
+      transition: opacity .35s;
     }
+    .frame svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .3s; }
+    .frame.wave svg { opacity: 1; }
+    .frame.wave .ttl { opacity: 0; }
+    .frame svg path { fill: none; stroke: var(--txt); stroke-width: 1; vector-effect: non-scaling-stroke; }
 
-.manifesto {
-  font-size: 0.72rem;
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #555;
-  margin-top: 1rem;
-}
-
-    .logo-wrap img {
-      width: auto;
-      height: auto;
-      max-height: 240px;
-      max-width: 240px;
+    .caps { position: absolute; left: 0; right: 0; top: calc(9vh + 54vh + 2.2rem); bottom: 2rem; padding: 0 clamp(1rem, 4vw, 2.5rem); }
+    .cap {
+      position: absolute; left: 50%; top: 0; width: min(46rem, calc(100% - 2rem)); transform: translate(-50%, 10px);
+      text-align: center; opacity: 0; transition: opacity .45s, transform .45s; pointer-events: none;
     }
+    .cap.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+    .cap .k { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    .cap h2 { font-weight: 400; font-size: clamp(1.15rem, 2vw, 1.5rem); letter-spacing: -.01em; margin: .55rem 0 .5rem; }
+    .cap p { font-size: clamp(.92rem, 1.25vw, 1.05rem); line-height: 1.55; color: #bdbbb5; }
+    .cap p b { color: var(--txt); font-weight: 400; }
 
-    /* ─── FOOTER ─── */
+    .index {
+      position: absolute; right: clamp(1rem, 3vw, 2.5rem); top: 50%; transform: translateY(-50%);
+      list-style: none; display: flex; flex-direction: column; gap: .55rem; text-align: right;
+    }
+    .index a { font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color .2s; font-variant-numeric: tabular-nums; }
+    .index a:hover { color: #aaa; }
+    .index a.on { color: var(--txt); }
+    .hint { position: absolute; left: clamp(1rem, 3vw, 2.5rem); bottom: 1.6rem; font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); transition: opacity .4s; }
+
+    /* ─── SECTIONS ─── */
+    section.s { padding: clamp(5rem, 12vw, 9rem) clamp(1rem, 4vw, 2.5rem) 0; max-width: 1200px; margin: 0 auto; }
+    .s-h { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; margin-bottom: 2.4rem; align-items: baseline; }
+    .s-h h3 { font-size: .72rem; font-weight: 400; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .s-h p { font-size: clamp(1.3rem, 2.4vw, 2rem); line-height: 1.25; letter-spacing: -.015em; }
+    .list { list-style: none; border-top: 1px solid var(--line); }
+    .list li {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; padding: 1.35rem 0; border-bottom: 1px solid var(--line); align-items: baseline;
+      transition: padding-left .3s;
+    }
+    .list li:hover { padding-left: .6rem; }
+    .list .who { font-size: clamp(1.25rem, 2.4vw, 1.9rem); font-weight: 400; letter-spacing: -.02em; line-height: 1.1; }
+    .list .who small { display: block; font-size: .72rem; font-weight: 300; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: .45rem; }
+    .list .what { font-size: 1rem; line-height: 1.55; color: #bdbbb5; }
+    .list .what a { color: var(--txt); text-decoration: none; border-bottom: 1px solid #444; }
+    .list .what a:hover { border-color: var(--txt); }
+
+    .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .cols > div { background: var(--bg); padding: 1.6rem 1.4rem 1.8rem; }
+    .cols h4 { font-weight: 400; font-size: 1.35rem; letter-spacing: -.01em; margin-bottom: .2rem; }
+    .cols h4 a { text-decoration: none; }
+    .cols h4 a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+    .cols .role { font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .cols p { font-size: .95rem; line-height: 1.55; color: #bdbbb5; }
+    .cols .n { margin-top: 1.2rem; font-size: .8rem; letter-spacing: .04em; color: var(--muted); line-height: 1.6; }
+    .cols .n b { color: var(--txt); font-weight: 400; }
+
+    .path { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .path li { font-size: .92rem; line-height: 1.5; color: #bdbbb5; border-top: 1px solid var(--line); padding-top: 1rem; }
+    .path b { display: block; color: var(--txt); font-weight: 400; margin-bottom: .2rem; }
+    .path span { display: block; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .6rem; }
+
+    /* ─── CONTACT ─── */
+    .contact { padding: clamp(7rem, 16vw, 12rem) clamp(1rem, 4vw, 2.5rem) 0; text-align: center; }
+    .contact .k { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .contact h3 { font-weight: 300; font-size: clamp(2rem, 6vw, 5rem); letter-spacing: -.035em; line-height: 1; margin: 1rem 0 2.2rem; }
+    .contact .mail {
+      font-weight: 400; font-size: clamp(1.1rem, 2.6vw, 1.8rem); letter-spacing: .01em; text-decoration: none;
+      border-bottom: 1px solid #444; padding-bottom: 4px; transition: border-color .2s;
+    }
+    .contact .mail:hover { border-color: var(--txt); }
+    .contact .links { display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem 1.8rem; margin-top: 2.4rem; }
+    .contact .links a { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .contact .links a:hover { color: var(--txt); }
+
     footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; flex-wrap: wrap;
+      padding: clamp(6rem, 12vw, 9rem) clamp(1rem, 3vw, 2.5rem) 2rem;
     }
+    footer img { height: 72px; display: block; margin-bottom: .8rem; }
+    footer .manifesto { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: #555; }
+    footer .copy { font-size: .75rem; letter-spacing: .04em; color: #444; }
 
-    .projects-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
+    @media (max-width: 760px) {
+      .frame-zone { top: 11vh; height: 46vh; }
+      .caps { top: calc(11vh + 46vh + 2rem); }
+      .index { display: none; }
+      .hint { display: none; }
+      .s-h, .list li { grid-template-columns: 1fr; gap: .6rem; }
+      .cols { grid-template-columns: 1fr; }
+      .path { grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+      header nav a.opt { display: none; }
     }
-
-    .projects-list li {
-      font-size: 0.78rem;
-      font-weight: 300;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #444;
-      transition: color 0.2s;
-      cursor: default;
+    @media (max-height: 640px) and (min-width: 761px) {
+      .cap p { font-size: .9rem; }
     }
-
-    .projects-list li:hover { color: #f0efeb; }
-
-    .projects-list a {
-      text-decoration: none;
-      color: inherit;
+    @media (prefers-reduced-motion: reduce) {
+      body::before { animation: none; }
+      .cap { transition: none; }
     }
-
-
-    .copyright {
-      font-size: 0.75rem;
-     font-weight: 300;
-     letter-spacing: 0.04em;
-      color: #333;
-    }
-    .contact-wrap a {
-      font-weight: 500;
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      color: #f0efeb;
-      text-decoration: none;
-      border-bottom: 1px solid #333;
-      padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
-
-    .contact-wrap a:hover { border-color: #f0efeb; }
-
-    @media (max-width: 540px) {
-      body { padding: 1.5rem; }
-      footer { flex-direction: column; gap: 2rem; align-items: flex-start; }
-    }
-
-canvas#bg {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-
   </style>
 </head>
 <body>
 
-  <header>
-    <span>cabinet26</span>
-    <a href="mailto:contact@cabinet26.com">contact</a>
-  </header>
+<header>
+  <a class="name" href="#reel">cabinet26</a>
+  <nav>
+    <a class="opt" href="#confiance">références</a>
+    <a class="opt" href="#projets">projets</a>
+    <a href="#contact">contact</a>
+  </nav>
+</header>
 
-  <main>
-    <div class="logo-wrap">
-      <img src="c26_w_txt.png" alt="cabinet26" />
+<main>
+  <section id="reel" aria-label="Services">
+    <div class="stage">
+      <div class="frame-zone">
+        <div class="frame" id="frame">
+          <i></i><i></i><i></i><i></i>
+          <span class="ratio" id="ratio">plein cadre</span>
+          <span class="tc" id="tc">00:00:00:00</span>
+          <span class="rec">rec</span>
+          <div class="ttl" id="ttl">cabinet26</div>
+          <svg viewBox="0 0 1000 100" preserveAspectRatio="none" aria-hidden="true"><path id="wave" d=""/></svg>
+        </div>
+      </div>
+
+      <div class="caps" id="caps"></div>
+      <ul class="index" id="index"></ul>
+      <span class="hint" id="hint">scroll ↓</span>
     </div>
-    <p class="manifesto">transmission pop-culturelle.</p>
-  </main>
+  </section>
 
-  <footer>
-    <ul class="projects-list">
-      <li><a href="https://ludokino.net" target="_blank">Ludokino</a></li>
-      <li><a href="https://toonesque.com" target="_blank">toonesque.</a></li>
-      <li>Caligosto &amp; Don Skellington</li>
+  <section class="s" id="confiance">
+    <div class="s-h">
+      <h3>Ils m'ont fait confiance</h3>
+      <p>Des organisateurs d'événements, des commerces, des artistes et des médias.</p>
+    </div>
+    <ul class="list">
+      <li>
+        <div class="who">SEFA Event / Japan Expo<small>2026</small></div>
+        <div class="what">À Japan Expo Sud (Marseille), tournage pour les réseaux, publié le soir même. Pour les 25 ans de Japan Expo Paris, montage de 3 best-of à partir de 25 ans d'archives et boucle de 2h24 diffusée sur le stand anniversaire. Enfin, 4 vidéos souvenir des scènes.</div>
+      </li>
+      <li>
+        <div class="who">Noir Pastel<small>Sauvage Galerie 2 · 2025</small></div>
+        <div class="what">Régie, assistanat à la réalisation et DJ set pour l'association d'artistes.</div>
+      </li>
+      <li>
+        <div class="who">O'Saveurs Braisées<small>Meudon-la-Forêt</small></div>
+        <div class="what">Vidéos en motion design pour le restaurant.</div>
+      </li>
+      <li>
+        <div class="who">Y40i<small>Artiste</small></div>
+        <div class="what">Réalisation et post-production des clips « yeah yeah » et « blood blood blood ». Production musicale.</div>
+      </li>
+      <li>
+        <div class="who">Caligosto &amp; Don Skellington<small>Artistes</small></div>
+        <div class="what">Réalisation et post-production du clip « The Recipe ». Production musicale.</div>
+      </li>
+      <li>
+        <div class="who">Cartoon Fantasy<small>2021</small></div>
+        <div class="what">Réalisation de l'interview vidéo d'Étienne Guignard.</div>
+      </li>
     </ul>
-    <span class="copyright">© cabinet26</span>
-  </footer>
+  </section>
 
+  <section class="s" id="projets">
+    <div class="s-h">
+      <h3>Projets</h3>
+      <p>Ce que je fais pour moi, et qui me sert de terrain d'essai.</p>
+    </div>
+    <div class="cols">
+      <div>
+        <h4><a href="https://toonesque.com" target="_blank" rel="noopener">toonesque.</a></h4>
+        <p class="role">Fondateur · depuis 2018</p>
+        <p>Un média vidéo sur la culture de l'animation. J'en fais l'écriture, le tournage, la présentation face caméra, le montage et l'étalonnage. Les formats : video essay, interviews, shorts (toonflakes), recommandations (TOONFLASH) et le débrief.</p>
+        <p class="n"><b>240 000+</b> vues cumulées<br><b>2 800+</b> abonnés cumulés</p>
+      </div>
+      <div>
+        <h4><a href="https://ludokino.net" target="_blank" rel="noopener">LUDOKINO</a></h4>
+        <p class="role">Vice-président · depuis 2024</p>
+        <p>Un média associatif. J'y suis entré comme monteur, puis je suis devenu directeur de publication. Je m'occupe des émissions (OMNIBUS, arka-TECH), des lives, de la couverture presse face caméra (Star's Up, Paris Audio Video Show, Japan Expo, LUDIVERSE) et du site.</p>
+        <p class="n"><b>1 500+</b> spectateurs simultanés pour le live Switch 2<br><b>15 000+</b> vues pour arka-TECH sur la PSP</p>
+      </div>
+      <div>
+        <h4><a href="https://vincentimes.fr" target="_blank" rel="noopener">VincenTimes</a></h4>
+        <p class="role">Musique</p>
+        <p>Les morceaux que je sors sous mon nom, faits sur Ableton. Je fais aussi de la production pour Y40i et Caligosto &amp; Don Skellington, des mix DJ et la livraison des masters au distributeur.</p>
+        <p class="n">Spotify · Apple Music · Deezer · Bandcamp</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="s" id="parcours">
+    <div class="s-h">
+      <h3>Parcours</h3>
+      <p>Diplômé de l'ESRA Paris, spécialité post-production. Disponible en freelance depuis Meudon (92).</p>
+    </div>
+    <ul class="path">
+      <li><span>2016 – 2019</span><b>ESRA Paris</b>DESRA, diplôme certifié par l'État, spécialisation post-production.</li>
+      <li><span>2015</span><b>NOSIDE</b>Stage en post-production : montage et VFX d'« Internet de l'Époque » (25 millions de vues).</li>
+      <li><span>2019 – 2025</span><b>Apple Retail</b>Spécialiste puis responsable formations. Vidéos pour l'ouverture de l'Apple Store Parly 2.</li>
+      <li><span>2024 – aujourd'hui</span><b>cabinet26</b>Vidéaste, monteur et motion designer indépendant.</li>
+    </ul>
+  </section>
+
+  <section class="contact" id="contact">
+    <p class="k">Fichier → Nouveau projet</p>
+    <h3>Quel format, votre projet ?</h3>
+    <a class="mail" href="mailto:vincent@cabinet26.com">vincent@cabinet26.com</a>
+    <div class="links">
+      <a href="https://vincentimes.fr/cv/" target="_blank" rel="noopener">CV</a>
+      <a href="https://www.linkedin.com/in/vincentimes" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.imdb.com/fr/name/nm9590204/" target="_blank" rel="noopener">IMDb</a>
+      <a href="https://vincentimes.fr" target="_blank" rel="noopener">vincentimes.fr</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div>
+    <img src="c26_w_txt.png" alt="cabinet26" />
+    <p class="manifesto">transmission pop-culturelle.</p>
+  </div>
+  <span class="copy">© cabinet26 · Vincent Quêne · Meudon (92)</span>
+</footer>
+
+<script>
+/* Chaque format de cadre correspond à un métier. r = ratio (largeur / hauteur), null = plein cadre. */
+const STEPS = [
+  { r: null, label: 'plein cadre', ttl: 'cabinet26', k: 'Vincent Quêne · vidéaste indépendant',
+    h: 'Un cadre, tous les formats.',
+    p: 'Je suis vidéaste, monteur et motion designer. Du tournage à l\'export, <b>je m\'occupe de toute la chaîne, seul</b>, quel que soit le format.' },
+  { r: 2.39, label: '2,39:1', ttl: 'Réalisation', k: '01 — Cinémascope',
+    h: 'Réaliser, cadrer, diriger.',
+    p: 'Clips musicaux, bandes-annonces, interviews. J\'ai réalisé et post-produit des clips pour <b>Y40i</b> et pour <b>Caligosto &amp; Don Skellington</b>, et l\'interview d\'Étienne Guignard pour <b>Cartoon Fantasy</b>.' },
+  { r: 16 / 9, label: '16:9', ttl: 'Montage', k: '02 — Format écran',
+    h: 'Monter, étalonner, livrer.',
+    p: 'Mon cœur de métier, sur DaVinci Resolve Studio et Premiere Pro. Pour les 25 ans de <b>Japan Expo Paris</b>, j\'ai monté 3 best-of à partir de 25 ans d\'archives et une boucle de 2h24 diffusée sur le stand.' },
+  { r: 9 / 16, label: '9:16', ttl: 'Réseaux', k: '03 — Vertical',
+    h: 'Tourné le jour, publié le soir.',
+    p: 'À <b>Japan Expo Sud</b> (Marseille), j\'ai tourné pour les réseaux et publié chaque soir. Shorts, sous-titrage, déclinaisons. Je produis et monétise aussi mes contenus sur YouTube, Instagram et TikTok.' },
+  { r: 1, label: '1:1', ttl: 'Motion', k: '04 — Carré',
+    h: 'Faire bouger l\'image.',
+    p: 'Motion design, titres, habillages, visuels. J\'ai fait des vidéos en motion design pour <b>O\'Saveurs Braisées</b> (Meudon-la-Forêt) et j\'habille mes propres émissions.' },
+  { r: 4 / 3, label: '4:3', ttl: 'Archives', k: '05 — Format d\'origine',
+    h: 'Faire revivre ce qui dort.',
+    p: 'Numérisation de cassettes miniDV en FireWire, capture de jeux vidéo, tri et montage d\'archives. Pour Japan Expo, j\'ai repris <b>25 ans d\'images</b>.' },
+  { r: 16 / 9, label: '16:9 · direct', ttl: 'En direct', k: '06 — Live & face caméra', live: true,
+    h: 'Pas de deuxième prise.',
+    p: 'Lives, régie OBS et présentation face caméra. Le live de LUDOKINO pour la sortie de la Switch 2 a réuni <b>plus de 1 500 spectateurs simultanés</b> et s\'est retrouvé en page d\'accueil de Twitch.' },
+  { r: 24, label: 'piste audio', ttl: 'Son', k: '07 — Son & musique', wave: true,
+    h: 'L\'autre moitié de l\'image.',
+    p: 'Mixage, jingles, musique originale, masters prêts pour le distributeur. Je sors des morceaux sous le nom <b>VincenTimes</b> et je produis pour d\'autres artistes.' },
+  { r: null, label: 'plein cadre', ttl: 'Toute la chaîne', k: 'Fin de séquence',
+    h: 'Un seul interlocuteur.',
+    p: 'Écriture, tournage, montage, étalonnage, motion, son, live, diffusion. <a href="#confiance">Voir les références ↓</a>' },
+];
+
+const $ = id => document.getElementById(id);
+const reel = $('reel'), frame = $('frame'), zone = document.querySelector('.frame-zone');
+const N = STEPS.length;
+reel.style.height = (N * 85 + 15) + 'vh';
+
+$('caps').innerHTML = STEPS.map((s, i) => `<div class="cap" data-i="${i}"><p class="k">${s.k}</p><h2>${s.h}</h2><p>${s.p}</p></div>`).join('');
+$('index').innerHTML = STEPS.map((s, i) => `<li><a href="#" data-i="${i}">${s.label}</a></li>`).join('');
+const caps = [...document.querySelectorAll('.cap')], idx = [...document.querySelectorAll('.index a')];
+
+const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const tc = s => { const f = Math.floor(s * 25); return [Math.floor(f / 90000), Math.floor(f / 1500) % 60, Math.floor(f / 25) % 60, f % 25].map(n => String(n).padStart(2, '0')).join(':'); };
+
+let cur = -1, prog = 0;
+function geom() {
+  const W = zone.clientWidth * (innerWidth < 761 ? .9 : .72), H = zone.clientHeight;
+  return { W, H, full: W / H };
+}
+function sizeFor(r, g) {
+  r = r ?? g.full;
+  let w = Math.min(g.W, g.H * r), h = w / r;
+  if (r > 10) h = Math.max(h, 34); // la piste audio garde une hauteur lisible
+  return [w, h];
+}
+function render() {
+  const rect = reel.getBoundingClientRect();
+  const total = reel.offsetHeight - innerHeight;
+  prog = clamp(-rect.top / total, 0, 1);
+  const s = prog * (N - 1);
+  const i = Math.min(N - 2, Math.floor(s)), f = s - i;
+  // tient le format 55 % du temps, puis glisse vers le suivant
+  const m = ease(clamp((f - .55) / .45, 0, 1));
+  const g = geom();
+  const [w1, h1] = sizeFor(STEPS[i].r, g), [w2, h2] = sizeFor(STEPS[i + 1].r, g);
+  // interpolation en log pour un mouvement régulier entre formats extrêmes
+  const w = Math.exp(Math.log(w1) + (Math.log(w2) - Math.log(w1)) * m);
+  const h = Math.exp(Math.log(h1) + (Math.log(h2) - Math.log(h1)) * m);
+  frame.style.width = w + 'px'; frame.style.height = h + 'px';
+
+  const a = prog >= 1 ? N - 1 : (m > .5 ? i + 1 : i);
+  if (a !== cur) {
+    cur = a; const st = STEPS[a];
+    caps.forEach((c, k) => c.classList.toggle('on', k === a));
+    idx.forEach((c, k) => c.classList.toggle('on', k === a));
+    $('ratio').textContent = st.label;
+    $('ttl').textContent = st.ttl;
+    frame.classList.toggle('live', !!st.live);
+    frame.classList.toggle('wave', !!st.wave);
+  }
+  $('tc').textContent = tc(prog * 128);
+  $('hint').style.opacity = prog > .02 ? 0 : 1;
+}
+
+// onde sonore pour la piste audio
+let ph = 0;
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function wave() {
+  if (frame.classList.contains('wave') || !ph) {
+    ph += .06; let d = 'M0 50';
+    for (let x = 0; x <= 1000; x += 6) {
+      const env = Math.sin(x / 1000 * Math.PI);
+      const y = 50 + env * 42 * (Math.sin(x * .045 + ph) * .55 + Math.sin(x * .13 - ph * 1.7) * .3 + Math.sin(x * .011 + ph * .5) * .15);
+      d += ` L${x} ${y.toFixed(1)}`;
+    }
+    $('wave').setAttribute('d', d);
+  }
+  if (!still) requestAnimationFrame(wave);
+}
+
+document.getElementById('index').addEventListener('click', e => {
+  const a = e.target.closest('a'); if (!a) return; e.preventDefault();
+  const k = +a.dataset.i, total = reel.offsetHeight - innerHeight;
+  // vise le milieu de la phase de maintien du format
+  const p = k === 0 ? 0 : k === N - 1 ? 1 : (k + .25) / (N - 1);
+  scrollTo({ top: reel.offsetTop + p * total, behavior: 'smooth' });
+});
+
+addEventListener('scroll', render, { passive: true });
+addEventListener('resize', render);
+render();
+wave();
+</script>
 </body>
-<canvas id="bg"></canvas>
-
 </html>
