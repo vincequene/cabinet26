@@ -1,0 +1,11 @@
+{
+  // Config Cloudflare : le site est servi tel quel, sans build (voir .assetsignore pour ce qui est exclu).
+  // « previews » est exigé par « wrangler preview » (aperçus de branches).
+  "name": "cabinet26",
+  "compatibility_date": "2026-10-01",
+  "previews": {},
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "404-page"
+  }
+}
