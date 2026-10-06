@@ -261,6 +261,14 @@
       border-bottom: 1px solid #444; padding-bottom: 4px; transition: border-color .2s;
     }
     .contact .mail:hover { border-color: var(--txt); }
+    .contact .mail-row { display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap; gap: 1rem 1.4rem; }
+    .contact .copy {
+      font: inherit; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+      background: none; border: 1px solid #333; padding: .45rem .9rem; cursor: pointer; transition: color .2s, border-color .2s;
+    }
+    .contact .copy:hover, .contact .copy:focus-visible { color: var(--txt); border-color: var(--txt); outline: none; }
+    .contact .copy.done { color: var(--txt); border-color: var(--txt); }
+    .contact .copy-status { min-height: 1.2em; margin-top: .9rem; font-size: .75rem; letter-spacing: .04em; color: var(--muted); }
     .contact .links { display: flex; justify-content: center; flex-wrap: wrap; gap: .6rem 1.8rem; margin-top: 2.4rem; }
     .contact .links a { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
     .contact .links a:hover { color: var(--txt); }
@@ -422,7 +430,11 @@
   <section class="contact" id="contact">
     <p class="k">Fichier → Nouveau projet</p>
     <h3>Quel format, votre projet ?</h3>
-    <a class="mail" href="mailto:vincent@cabinet26.com">vincent@cabinet26.com</a>
+    <div class="mail-row">
+      <a class="mail" href="mailto:vincent@cabinet26.com">vincent@cabinet26.com</a>
+      <button class="copy" id="copyMail" type="button" data-mail="vincent@cabinet26.com">Copier l'adresse</button>
+    </div>
+    <p class="copy-status" id="copyStatus" role="status" aria-live="polite"></p>
     <div class="links">
       <a href="https://vincentimes.fr/cv/" target="_blank" rel="noopener">CV</a>
       <a href="https://www.linkedin.com/in/vincentimes" target="_blank" rel="noopener">LinkedIn</a>
@@ -497,7 +509,8 @@ function sizeFor(r, g) {
 function render() {
   const rect = reel.getBoundingClientRect();
   const total = reel.offsetHeight - innerHeight;
-  prog = clamp(-rect.top / total, 0, 1);
+  // fenêtre de hauteur nulle (onglet masqué au chargement) : on reste sur le premier format
+  prog = total > 0 ? clamp(-rect.top / total, 0, 1) : 0;
   const s = prog * (N - 1);
   const i = Math.min(N - 2, Math.floor(s)), f = s - i;
   // tient le format 55 % du temps, puis glisse vers le suivant
@@ -570,6 +583,26 @@ $('travaux').addEventListener('click', e => { const b = e.target.closest('.work'
 $('pClose').addEventListener('click', () => player.close());
 player.addEventListener('click', e => { if (e.target === player) player.close(); });
 player.addEventListener('close', () => { $('pScreen').innerHTML = ''; });
+
+/* Copier l'adresse, pour ceux qui n'ont pas de logiciel de mail configuré. */
+const copyBtn = $('copyMail');
+copyBtn.addEventListener('click', async () => {
+  const mail = copyBtn.dataset.mail;
+  let ok = false;
+  try { await navigator.clipboard.writeText(mail); ok = true; } catch {
+    // repli pour les navigateurs sans API presse-papiers (http, anciens navigateurs)
+    const ta = document.createElement('textarea');
+    ta.value = mail; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+  }
+  copyBtn.textContent = ok ? 'Adresse copiée ✓' : 'Copier l\'adresse';
+  copyBtn.classList.toggle('done', ok);
+  $('copyStatus').textContent = ok ? 'C\'est dans votre presse-papiers.' : 'La copie a échoué : sélectionnez l\'adresse à la main.';
+  clearTimeout(copyBtn._t);
+  copyBtn._t = setTimeout(() => { copyBtn.textContent = 'Copier l\'adresse'; copyBtn.classList.remove('done'); $('copyStatus').textContent = ''; }, 2500);
+});
 
 addEventListener('scroll', render, { passive: true });
 addEventListener('resize', render);
